@@ -1,3 +1,6 @@
+require "wix/instance"
+require "wix/version"
+
 module Wix
   extend self
 
