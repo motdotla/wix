@@ -1,5 +1,9 @@
+require 'base64'
+require 'json'
+require 'openssl'
 require "wix/instance"
 require "wix/version"
+require 'wix/errors/wix_error'
 
 module Wix
   extend self
