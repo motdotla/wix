@@ -14,9 +14,10 @@ module Wix
       signature     = split_wix_signed_instance[0]
       encoded_json  = split_wix_signed_instance[1]
       raise WixError.new(INVALID_WIX_SIGNATURE) if !valid_signature(signature, encoded_json)
-      
-      json_string         = Base64.decode64(encoded_json)
-      hash                = JSON.parse(json_string)
+
+      encoded_json += '=' * (4 - encoded_json.length.modulo(4)) if needs_base64_padding(encoded_json)
+      json_string      = Base64.decode64(encoded_json)
+      hash             = JSON.parse(json_string)
 
       RecursiveOpenStruct.new(hash, :recurse_over_arrays => true)
     rescue => error
@@ -28,6 +29,13 @@ module Wix
       my_signature            = Base64.urlsafe_encode64(hmac).gsub('=','')
 
       signature == my_signature
+    end
+
+    def self.needs_base64_padding(encoded_json)
+      Base64.strict_decode64(encoded_json)
+      false
+    rescue
+      true 
     end
   end
 end
