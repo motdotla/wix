@@ -14,9 +14,8 @@ module Wix
       signature     = split_wix_signed_instance[0]
       encoded_json  = split_wix_signed_instance[1]
       raise WixError.new(INVALID_WIX_SIGNATURE) if !valid_signature(signature, encoded_json)
-
-      encoded_json_hack   = encoded_json + ('=' * (4 - encoded_json.length.modulo(4)))
-      json_string         = Base64.urlsafe_decode64(encoded_json_hack)
+      
+      json_string         = Base64.decode64(encoded_json)
       hash                = JSON.parse(json_string)
 
       RecursiveOpenStruct.new(hash, :recurse_over_arrays => true)

@@ -1,6 +1,7 @@
 require 'base64'
 require 'json'
 require 'openssl'
+require 'recursive-open-struct'
 require "wix/instance"
 require "wix/version"
 require 'wix/errors/wix_error'
