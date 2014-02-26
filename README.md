@@ -2,31 +2,50 @@
 
 Rubygem to interact with Wix's add-on marketplace API.
 
+[![BuildStatus](https://travis-ci.org/scottmotte/wix.png?branch=master)](https://travis-ci.org/scottmotte/wix)
+[![Gem Version](https://badge.fury.io/rb/wix.png)](http://badge.fury.io/rb/wix)
+
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'wix'
+```
+gem 'wix'
+```
 
 And then execute:
 
-    $ bundle
+```
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install wix
+```
+gem install wix
+```
 
 Then in your application initialize the gem:
 
-    $ Wix.app_secret_key  = "your_app_secret_key"
-    $ Wix.app_key         = "your_app_key"
+```
+Wix.app_secret_key  = "your_app_secret_key"
+Wix.app_key         = "your_app_key"
+```
 
 
 ## Usage
 
 ### Parse Instance
 
-    $ Wix::Instance.parse("instance_parameter_from_wix")
+```
+Wix::Instance.parse("instance_parameter_from_wix")
+```
+
+## Tests
+
+```
+bundle exec rspec
+```
 
 ## Contributing
 
